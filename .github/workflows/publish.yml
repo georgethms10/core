@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:   # ✅ allows manual runs from the web UI
 
 jobs:
   publish:
@@ -24,6 +25,7 @@ jobs:
           java-version: 17
           server-id: github
           settings-path: ${{ github.workspace }}
+          token: ${{ secrets.GITHUB_TOKEN }}   # ✅ required for authentication
 
       - name: Build & Publish
         run: mvn -B -f "FinanceMe Core Platform/pom.xml" deploy
