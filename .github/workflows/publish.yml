@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:   # ✅ allows manual runs from the web UI
+  workflow_dispatch:   # ✅ allows manual runs from the GitHub web interface
 
 jobs:
   publish:
@@ -26,6 +26,9 @@ jobs:
           server-id: github
           settings-path: ${{ github.workspace }}
           token: ${{ secrets.GITHUB_TOKEN }}   # ✅ required for authentication
+
+      - name: Show Maven settings (debug)
+        run: cat ${{ github.workspace }}/.m2/settings.xml
 
       - name: Build & Publish
         run: mvn -B -f "FinanceMe Core Platform/pom.xml" deploy
