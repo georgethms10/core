@@ -28,7 +28,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}   # ✅ required for authentication
 
       - name: Show Maven settings (debug)
-        run: cat ${{ github.workspace }}/.m2/settings.xml
+        run: cat ${{ github.workspace }}/settings.xml
 
       - name: Build & Publish
         run: mvn -B -f "FinanceMe Core Platform/pom.xml" deploy
